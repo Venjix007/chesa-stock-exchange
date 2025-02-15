@@ -14,7 +14,6 @@ import {
   TableRow,
 } from '@mui/material';
 import axios from 'axios';
-import { useAuth } from '../contexts/AuthContext';
 
 interface Order {
   id: string;
@@ -51,7 +50,6 @@ function TabPanel(props: TabPanelProps) {
 const Orders = () => {
   const [value, setValue] = useState(0);
   const [orders, setOrders] = useState<Order[]>([]);
-  const { user } = useAuth();
 
   useEffect(() => {
     fetchOrders();

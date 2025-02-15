@@ -87,7 +87,7 @@ const AdminDashboard: React.FC = () => {
       const token = localStorage.getItem('token');
       const newState = !marketActive;
       
-      const response = await axios.post(
+      await axios.post(
         'http://localhost:5000/api/market/control',
         { is_active: newState },
         { headers: { Authorization: `Bearer ${token}` } }
