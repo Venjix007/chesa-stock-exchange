@@ -13,18 +13,16 @@ import time
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
-
-# Configure CORS with more detailed settings
-# CORS(app, resources={
-#     r"/*": {
-#         "origins": ["*"],
-#         "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-#         "allow_headers": ["Content-Type", "Authorization", "Access-Control-Allow-Origin"],
-#         "supports_credentials": True,
-#         "expose_headers": ["Content-Range", "X-Content-Range"]
-#     }
-# })
+CORS(app, resources={
+    r"/api/*": {
+        "origins": [
+            "https://courageous-travesseiro-a28f72.netlify.app",  # Allow all Netlify subdomains
+            os.getenv("FRONTEND_URL", "")  # Allow custom domain if configured
+        ],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"]
+    }
+})
 
 # Add CORS headers to all responses
 @app.after_request

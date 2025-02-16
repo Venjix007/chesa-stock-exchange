@@ -14,6 +14,7 @@ import {
   TableRow,
 } from '@mui/material';
 import axios from 'axios';
+import { getApiUrl } from '../config/api';
 
 interface Order {
   id: string;
@@ -58,7 +59,7 @@ const Orders = () => {
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/orders', {
+      const response = await axios.get(getApiUrl('api/orders'), {
         headers: { Authorization: `Bearer ${token}` },
       });
       setOrders(response.data);
